@@ -56,6 +56,16 @@
             "endpointKey": "a7ea6c10-7274-4a47-866c-ad01ccd7ff76",
             "subscriptionKey": "6c59fd5f-9a1a-455e-a2d3-16fff41ae6e1",
             "id": "6"
+        },
+        {
+            "type": "luis",
+            "name": "luistutorial",
+            "appId": "fc69929c-c8ab-4dea-a198-6f11e8975a93",
+            "version": "0.1",
+            "authoringKey": "5ac14b0ef88f45f5a4f31410367e93e3",
+            "subscriptionKey": "5ac14b0ef88f45f5a4f31410367e93e3",
+            "region": "westus",
+            "id": "7"
         }
     ],
     "padlock": "",

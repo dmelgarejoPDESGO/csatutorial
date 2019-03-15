@@ -12,12 +12,13 @@ const { BotFrameworkAdapter } = require('botbuilder');
 // Import required bot configuration.
 const { BotConfiguration } = require('botframework-config');
 
-
-const { QnAMaker } = require('botbuilder-ai');
-
-
 // This bot's main dialog.
 const { MyBot } = require('./bot');
+
+
+//Added by tutorials
+const { QnAMaker, LuisRecognizer } = require('botbuilder-ai');
+
 
 // Read botFilePath and botFileSecret from .env file
 // Note: Ensure you have a .env file and include botFilePath and botFileSecret.
@@ -31,8 +32,6 @@ const DEV_ENVIRONMENT = 'development';
 // bot name as defined in .bot file
 // See https://aka.ms/about-bot-file to learn more about .bot file its use and bot configuration.
 const BOT_CONFIGURATION = (process.env.NODE_ENV || DEV_ENVIRONMENT);
-
-
 
 
 // Create HTTP server
@@ -57,6 +56,30 @@ try {
     console.error(`\n - See https://aka.ms/about-bot-file to learn more about .bot file its use and bot configuration.\n\n`);
     process.exit();
 }
+
+//DM get luisConfig
+const LUIS_CONFIGURATION = 'luistutorial';
+const luisConfig = botConfig.findServiceByNameOrId(LUIS_CONFIGURATION);
+
+//DM Map the contents to the required format for `LuisRecognizer`.
+const luisApplication = {
+    applicationId: luisConfig.appId,
+    // CAUTION: Authoring key is used in this example as it is appropriate for prototyping.
+    // When implimenting for deployment/production, assign and use a subscription key instead of an authoring key.
+    endpointKey: luisConfig.authoringKey,
+    endpoint: luisConfig.getEndpoint()
+};
+
+//DM Create configuration for LuisRecognizer's runtime behavior.
+const luisPredictionOptions = {
+    includeAllIntents: true,
+    log: true,
+    staging: false
+};
+
+//DM create recognizer
+
+const luisRecognizer = new LuisRecognizer(luisApplication,luisPredictionOptions, true);
 
 // Initialize the QnA knowledge bases for the bot.
 // Assume each QnA entry in the .bot file is well defined.
@@ -95,7 +118,7 @@ adapter.onTurnError = async (context, error) => {
 // Create the main dialog.
 //const myBot = new MyBot();
 // Create the bot.
-const myBot = new MyBot(qnaServices);
+const myBot = new MyBot(qnaServices,luisRecognizer);
 
 // Listen for incoming requests.
 server.post('/api/messages', (req, res) => {
