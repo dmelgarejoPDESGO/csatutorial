@@ -1,0 +1,54 @@
+{
+    "name": "csatutorial",
+    "description": "",
+    "services": [
+        {
+            "type": "abs",
+            "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+            "subscriptionId": "6c59fd5f-9a1a-455e-a2d3-16fff41ae6e1",
+            "resourceGroup": "csatutorial",
+            "serviceName": "csatutorial",
+            "name": "csatutorial",
+            "id": "1",
+            "appId": "f62ded8c-af99-4af5-978a-1cd747556bbf"
+        },
+        {
+            "type": "blob",
+            "connectionString": "DefaultEndpointsProtocol=https;AccountName=csatutoriaotz5;AccountKey=keLKaC+cAEqurQoHFcVezxpHEP93APbu+/4X5muCUqls1yrQS0x6vF9APazFvG28hGpJXeXwxlOYyL0YGgXmTg==;",
+            "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+            "subscriptionId": "6c59fd5f-9a1a-455e-a2d3-16fff41ae6e1",
+            "resourceGroup": "csatutorial",
+            "serviceName": "csatutoriaotz5",
+            "id": "2"
+        },
+        {
+            "type": "endpoint",
+            "appId": "",
+            "appPassword": "",
+            "endpoint": "http://localhost:3978/api/messages",
+            "name": "development",
+            "id": "3"
+        },
+        {
+            "type": "endpoint",
+            "appId": "f62ded8c-af99-4af5-978a-1cd747556bbf",
+            "appPassword": "TJxbO@|5%yuL}3O5>X(8E}sCYShZ[",
+            "endpoint": "https://csatutorial3exv.azurewebsites.net/api/messages",
+            "name": "production",
+            "id": "4"
+        },
+        {
+            "type": "appInsights",
+            "instrumentationKey": "52352599-450d-4801-abe4-03b7f1ff9b10",
+            "applicationId": "5cda565a-2631-4424-805e-099bb388eb35",
+            "apiKeys": {},
+            "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+            "subscriptionId": "6c59fd5f-9a1a-455e-a2d3-16fff41ae6e1",
+            "resourceGroup": "csatutorial",
+            "serviceName": "csatutorialeaw374",
+            "id": "5"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0"
+}
