@@ -47,6 +47,15 @@
             "resourceGroup": "csatutorial",
             "serviceName": "csatutorialeaw374",
             "id": "5"
+        },
+        {
+            "type": "qna",
+            "name": "smartLightFAQ",
+            "kbId": "7aad96fc-c378-492c-b488-257ebbd8a3dd",
+            "hostname": "https://qnatutorial.azurewebsites.net/qnamaker",
+            "endpointKey": "a7ea6c10-7274-4a47-866c-ad01ccd7ff76",
+            "subscriptionKey": "6c59fd5f-9a1a-455e-a2d3-16fff41ae6e1",
+            "id": "6"
         }
     ],
     "padlock": "",

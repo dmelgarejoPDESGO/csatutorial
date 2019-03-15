@@ -12,6 +12,10 @@ const { BotFrameworkAdapter } = require('botbuilder');
 // Import required bot configuration.
 const { BotConfiguration } = require('botframework-config');
 
+
+const { QnAMaker } = require('botbuilder-ai');
+
+
 // This bot's main dialog.
 const { MyBot } = require('./bot');
 
@@ -27,6 +31,9 @@ const DEV_ENVIRONMENT = 'development';
 // bot name as defined in .bot file
 // See https://aka.ms/about-bot-file to learn more about .bot file its use and bot configuration.
 const BOT_CONFIGURATION = (process.env.NODE_ENV || DEV_ENVIRONMENT);
+
+
+
 
 // Create HTTP server
 const server = restify.createServer();
@@ -51,6 +58,22 @@ try {
     process.exit();
 }
 
+// Initialize the QnA knowledge bases for the bot.
+// Assume each QnA entry in the .bot file is well defined.
+const qnaServices = [];
+botConfig.services.forEach(s => {
+    if (s.type == 'qna') {
+        const endpoint = {
+            knowledgeBaseId: s.kbId,
+            endpointKey: s.endpointKey,
+            host: s.hostname
+        };
+        const options = {};
+        qnaServices.push(new QnAMaker(endpoint, options));
+    }
+});
+
+
 // Get bot endpoint configuration by service name
 const endpointConfig = botConfig.findServiceByNameOrId(BOT_CONFIGURATION);
 
@@ -70,7 +93,9 @@ adapter.onTurnError = async (context, error) => {
 };
 
 // Create the main dialog.
-const myBot = new MyBot();
+//const myBot = new MyBot();
+// Create the bot.
+const myBot = new MyBot(qnaServices);
 
 // Listen for incoming requests.
 server.post('/api/messages', (req, res) => {
